@@ -1,16 +1,17 @@
 import type { MetadataRoute } from 'next';
 import { SITE_URL } from '@/content/site';
 import { LANDING_PAGES } from '@/content/landings';
+import { POSTS } from '@/content/blog';
 
 /*
-  Crawlable sitemap. Static routes + the SEO sector landing pages. Next.js
-  serves this at /sitemap.xml automatically.
+  Crawlable sitemap. Static routes + SEO sector landing pages + Field Notes.
+  Next.js serves this at /sitemap.xml automatically.
 */
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  const core = ['', '/work', '/about', '/contact'].map((path) => ({
+  const core = ['', '/work', '/about', '/blog', '/contact'].map((path) => ({
     url: `${SITE_URL}${path}`,
     lastModified: now,
     changeFrequency: 'monthly' as const,
@@ -24,5 +25,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...core, ...landings];
+  const posts = POSTS.map((p) => ({
+    url: `${SITE_URL}/blog/${p.slug}`,
+    lastModified: new Date(p.date),
+    changeFrequency: 'yearly' as const,
+    priority: 0.6,
+  }));
+
+  return [...core, ...landings, ...posts];
 }

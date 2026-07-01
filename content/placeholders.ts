@@ -29,18 +29,25 @@ export const PLACEHOLDERS = {
   GEO_LNG: '-3.5339',
 
   // ── Social links ──────────────────────────────────────────────────────
-  INSTAGRAM_URL: 'PLACEHOLDER_INSTAGRAM_URL',
+  // Instagram / Vimeo / Facebook are the real public Fresh Ground Films
+  // profiles (pulled from their live site). LinkedIn left as a placeholder.
+  INSTAGRAM_URL: 'https://instagram.com/freshgroundfilms',
+  VIMEO_URL: 'https://vimeo.com/freshgroundfilms',
+  FACEBOOK_URL: 'https://www.facebook.com/FreshGroundFilms/',
   LINKEDIN_URL: 'PLACEHOLDER_LINKEDIN_URL',
-  VIMEO_URL: 'PLACEHOLDER_VIMEO_URL',
 
   // ── Brand ─────────────────────────────────────────────────────────────
   // The logo currently renders as a text wordmark component. Replace the
   // markup in components/Logo.tsx with the real SVG when supplied.
   LOGO_SVG: 'PLACEHOLDER_LOGO_SVG',
 
-  // ── Video assets (drop real files into /public/video) ─────────────────
-  SHOWREEL_VIDEO: '/video/PLACEHOLDER_SHOWREEL_VIDEO.mp4',
-  SHOWREEL_POSTER: '/img/PLACEHOLDER_SHOWREEL_POSTER.jpg', // mobile + pre-load frame
+  // ── Hero + showreel (drop real files into /public/video and /public/img) ─
+  // The hero background uses HERO_VIDEO with HERO_IMAGE as the poster / mobile
+  // fallback. SHOWREEL_VIDEO is the full reel opened by "Watch showreel".
+  HERO_VIDEO: '/video/PLACEHOLDER_HERO_VIDEO.mp4',
+  HERO_IMAGE: '/img/PLACEHOLDER_HERO_IMAGE.jpg', // bright, warm, natural-light still
+  SHOWREEL_VIDEO: '/video/PLACEHOLDER_HERO_VIDEO.mp4',
+  SHOWREEL_POSTER: '/img/PLACEHOLDER_HERO_IMAGE.jpg',
 
   // Per-project videos + poster stills. Portfolio order 1–6.
   PORTFOLIO_VIDEO_1: '/video/PLACEHOLDER_PORTFOLIO_VIDEO_1.mp4',
@@ -62,6 +69,12 @@ export const PLACEHOLDERS = {
   TEAM_PHOTO: '/img/PLACEHOLDER_TEAM_PHOTO.jpg',
   BTS_PHOTO_1: '/img/PLACEHOLDER_BTS_PHOTO_1.jpg',
   BTS_PHOTO_2: '/img/PLACEHOLDER_BTS_PHOTO_2.jpg',
+
+  // ── Field Notes (blog) covers ─────────────────────────────────────────
+  BLOG_COVER_1: '/img/PLACEHOLDER_BLOG_COVER_1.jpg',
+  BLOG_COVER_2: '/img/PLACEHOLDER_BLOG_COVER_2.jpg',
+  BLOG_COVER_3: '/img/PLACEHOLDER_BLOG_COVER_3.jpg',
+  BLOG_COVER_4: '/img/PLACEHOLDER_BLOG_COVER_4.jpg',
 
   // ── Open Graph / share ────────────────────────────────────────────────
   OG_IMAGE: '/og/PLACEHOLDER_OG_IMAGE.jpg',

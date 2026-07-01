@@ -1,11 +1,13 @@
 # Fresh Ground Films
 
-Marketing website for **Fresh Ground Films** — cinematic video production based
-in Exeter, Devon, serving the whole of the UK.
+Marketing website for **Fresh Ground Films** — warm, human video production
+based in Exeter, Devon, serving the whole of the UK.
 
-Built to feel like a beautifully shot film rather than a stock small-business
-template: full-bleed showreel video, editorial typography, generous negative
-space and slow, confident scroll motion.
+Warm, bright and approachable — matched to Fresh Ground Films' real brand: a
+cream/terracotta palette, a flowing script logotype, rounded human typography,
+full-bleed natural-light video, and gentle, soft scroll motion. (Their live
+brand accent is green; this build uses terracotta/amber per the brief and it's
+a one-file swap in `tailwind.config.ts` if you ever want the green.)
 
 ---
 
@@ -14,7 +16,8 @@ space and slow, confident scroll motion.
 - **Next.js 14** (App Router) + **TypeScript**
 - **Tailwind CSS** for styling (mobile-first)
 - **Framer Motion** for scroll reveals, crossfades and the filter transitions
-- Fonts via `next/font` — **Fraunces** (editorial display) + **Inter** (body)
+- Fonts via `next/font` — **Poppins** (headings) + **Nunito Sans** (body) +
+  **Dancing Script** (logotype)
 - Static/SSG by default; only `/api/contact` is dynamic
 - Deploys to **Vercel** with zero configuration
 
@@ -34,6 +37,8 @@ fresh-ground-films/
 │   ├── work/page.tsx                  # WORK / portfolio (filterable)
 │   ├── about/page.tsx                 # ABOUT (Ross Gill + approach)
 │   ├── contact/page.tsx               # CONTACT (form + details)
+│   ├── blog/page.tsx                  # FIELD NOTES (blog) index
+│   ├── blog/[slug]/page.tsx           # Individual Field Note (SSG)
 │   ├── video-production-exeter/       # SEO landing page
 │   ├── healthcare-video-production/   # SEO landing page
 │   ├── charity-video-production/      # SEO landing page
@@ -42,8 +47,9 @@ fresh-ground-films/
 │   ├── sitemap.ts  ·  robots.ts       # SEO route files
 │   ├── not-found.tsx  ·  icon.svg     # 404 + favicon
 ├── components/
-│   ├── Nav.tsx  ·  Footer.tsx  ·  Logo.tsx
+│   ├── Nav.tsx  ·  Footer.tsx  ·  Logo.tsx   # Logo = script wordmark
 │   ├── Hero.tsx                       # Full-bleed video + mobile poster fallback
+│   ├── SmartImage.tsx                 # Graceful warm image fallback
 │   ├── SectorStrip.tsx  ·  SectorIcon.tsx
 │   ├── FeaturedWork.tsx  ·  ProjectCard.tsx  ·  VideoModal.tsx
 │   ├── WorkGrid.tsx                   # Client-side sector filtering
@@ -55,7 +61,7 @@ fresh-ground-films/
 ├── content/                          # All copy + config (edit here, not in JSX)
 │   ├── site.ts  ·  placeholders.ts   # placeholders.ts = single swap-in file
 │   ├── sectors.ts  ·  projects.ts
-│   ├── testimonials.ts  ·  landings.ts
+│   ├── testimonials.ts  ·  landings.ts  ·  blog.ts
 ├── public/                           # Generated placeholder video + stills
 └── config files (next / tailwind / tsconfig / postcss)
 ```
@@ -128,9 +134,8 @@ Search the codebase for `PLACEHOLDER_` to find every item. Most live in
 - [ ] `PLACEHOLDER_PHONE_NUMBER` — real phone + `PHONE_HREF` (`tel:` link)
 - [ ] `PLACEHOLDER_EMAIL` — confirm the real inbox (currently
       `hello@freshgroundfilms.co.uk`)
-- [ ] `PLACEHOLDER_INSTAGRAM_URL`
-- [ ] `PLACEHOLDER_LINKEDIN_URL`
-- [ ] `PLACEHOLDER_VIMEO_URL`
+- [ ] `PLACEHOLDER_LINKEDIN_URL` (Instagram / Vimeo / Facebook are already set
+      to the real public Fresh Ground Films profiles)
 - [ ] Address + geo (`ADDRESS_STREET`, `ADDRESS_POSTCODE`, `GEO_LAT`,
       `GEO_LNG`) for the JSON-LD LocalBusiness schema
 
@@ -142,16 +147,18 @@ Search the codebase for `PLACEHOLDER_` to find every item. Most live in
       `tailwind.config.ts` and `app/globals.css` once the logo is supplied
 
 **Video** — `public/video`
-- [ ] `PLACEHOLDER_SHOWREEL_VIDEO.mp4` — real showreel
+- [ ] `PLACEHOLDER_HERO_VIDEO.mp4` — real hero/showreel
 - [ ] `PLACEHOLDER_PORTFOLIO_VIDEO_1` … `_6.mp4` — per-project films
 
 **Stills** — `public/img` & `public/og`
-- [ ] `PLACEHOLDER_SHOWREEL_POSTER.jpg`
+- [ ] `PLACEHOLDER_HERO_IMAGE.jpg` — bright, warm hero still / poster
 - [ ] `PLACEHOLDER_PORTFOLIO_POSTER_1` … `_6.jpg`
 - [ ] `PLACEHOLDER_FOUNDER_PORTRAIT.jpg`
 - [ ] `PLACEHOLDER_TEAM_PHOTO.jpg`
 - [ ] `PLACEHOLDER_BTS_PHOTO_1.jpg`, `PLACEHOLDER_BTS_PHOTO_2.jpg`
+- [ ] `PLACEHOLDER_BLOG_COVER_1` … `_4.jpg` — Field Notes covers
 - [ ] `PLACEHOLDER_OG_IMAGE.jpg` — 1200×630 social share image
+- [ ] Delete the two orphan `PLACEHOLDER_SHOWREEL_*` files (no longer used)
 
 **Copy / alt text**
 - [ ] Replace every `PLACEHOLDER_ALT:` string with real descriptive alt text
@@ -172,8 +179,10 @@ Search the codebase for `PLACEHOLDER_` to find every item. Most live in
   load speed and data.
 - **Accessibility**: semantic landmarks, one `<h1>` per page, visible focus
   states, 44px+ tap targets, `prefers-reduced-motion` disables reveals and the
-  ken-burns / autoplay.
-- **SEO**: per-page meta + Open Graph, JSON-LD LocalBusiness, `sitemap.xml`,
-  `robots.txt`, clean crawlable sector URLs.
-- The placeholder video/stills in `public/` are generated stand-ins — see
-  `public/PLACEHOLDER-ASSETS.md`.
+  soft-zoom / autoplay.
+- **SEO**: per-page meta + Open Graph, JSON-LD LocalBusiness, `sitemap.xml`
+  (incl. Field Notes), `robots.txt`, clean crawlable sector URLs.
+- **Graceful media**: every still/video uses a warm fallback block (never a
+  broken-image icon) if the asset is missing — see `components/SmartImage.tsx`.
+- The placeholder video/stills in `public/` are bright, warm generated
+  stand-ins that match the real brand tone — see `public/PLACEHOLDER-ASSETS.md`.

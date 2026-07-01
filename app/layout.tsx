@@ -1,27 +1,35 @@
 import type { Metadata } from 'next';
-import { Fraunces, Inter } from 'next/font/google';
+import { Poppins, Nunito_Sans, Dancing_Script } from 'next/font/google';
 import './globals.css';
 import { SITE, SITE_URL } from '@/content/site';
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
 import { LocalBusinessJsonLd } from '@/components/JsonLd';
 
-// Editorial display serif (headings). Loaded as a variable font (full weight
-// range) so the Tailwind font-weight utilities all resolve. Swap for a licensed
-// display face here if the brand supplies one later — Fraunces is a close,
-// free stand-in. next/font self-hosts these at build time (no runtime request
-// to Google — better privacy for public-sector/NHS visitors, and faster).
-const fraunces = Fraunces({
+// Warm, rounded, human sans for headings. next/font self-hosts these at build
+// time (no runtime request to Google — better privacy for public-sector/NHS
+// visitors, and faster).
+const poppins = Poppins({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-fraunces',
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-poppins',
 });
 
-// Clean sans (body).
-const inter = Inter({
+// Warm sans for body copy.
+const nunito = Nunito_Sans({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-inter',
+  variable: '--font-nunito',
+});
+
+// Flowing script for the logotype — PLACEHOLDER_LOGO_SVG stand-in until the
+// real cursive logo file is supplied (see components/Logo.tsx).
+const dancing = Dancing_Script({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['600', '700'],
+  variable: '--font-script',
 });
 
 export const metadata: Metadata = {
@@ -54,7 +62,7 @@ export const metadata: Metadata = {
         url: '/og/PLACEHOLDER_OG_IMAGE.jpg',
         width: 1200,
         height: 630,
-        alt: 'PLACEHOLDER_ALT: Fresh Ground Films cinematic showreel still',
+        alt: 'PLACEHOLDER_ALT: Fresh Ground Films — warm, natural-light story film still',
       },
     ],
   },
@@ -73,12 +81,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en-GB" className={`${fraunces.variable} ${inter.variable}`}>
-      <body className="min-h-screen bg-ink font-sans text-bone antialiased">
+    <html
+      lang="en-GB"
+      className={`${poppins.variable} ${nunito.variable} ${dancing.variable}`}
+    >
+      <body className="min-h-screen bg-paper font-sans text-cocoa antialiased">
         {/* Skip link for keyboard + screen-reader users */}
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-ember focus:px-5 focus:py-3 focus:text-sm focus:font-medium focus:text-ink"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-ember focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-white"
         >
           Skip to content
         </a>

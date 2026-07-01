@@ -28,7 +28,7 @@ export default function HomePage() {
       <section aria-label="Introduction" className="shell py-20 sm:py-28">
         <Reveal className="max-w-4xl">
           <p className="overline">Fresh Ground Films</p>
-          <p className="display mt-6 text-2xl leading-[1.25] text-bone sm:text-3xl md:text-[2.4rem] md:leading-[1.22]">
+          <p className="mt-6 font-display text-2xl font-medium leading-[1.3] tracking-tightest text-cocoa sm:text-3xl md:text-[2.35rem] md:leading-[1.28]">
             We produce cinematic quality films that create a powerful connection
             with your audience and inspire action. Based in Exeter, we serve the
             whole of the UK across healthcare, education, charity, business,

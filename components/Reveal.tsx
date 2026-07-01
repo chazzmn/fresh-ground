@@ -31,17 +31,18 @@ export function Reveal({
 }: RevealProps) {
   const reduce = useReducedMotion();
 
-  const offset = direction === 'up' ? 26 : direction === 'down' ? -26 : 0;
+  const offset = direction === 'up' ? 20 : direction === 'down' ? -20 : 0;
 
+  // Gentle, warm easing — soft fade + subtle slide-up (no heavy parallax).
   const variants: Variants = {
     hidden: { opacity: 0, y: reduce ? 0 : offset },
     show: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.9,
+        duration: 0.75,
         delay,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.33, 1, 0.68, 1],
       },
     },
   };

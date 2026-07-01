@@ -22,7 +22,7 @@ export function FeaturedWork() {
     <section
       id="work"
       aria-labelledby="work-heading"
-      className="scroll-mt-24 border-t border-ink-line py-20 sm:py-28"
+      className="scroll-mt-24 border-t border-line bg-paper-sand py-20 sm:py-28"
     >
       <div className="shell">
         <Reveal className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
@@ -30,19 +30,19 @@ export function FeaturedWork() {
             <p className="overline">Recent work</p>
             <h2
               id="work-heading"
-              className="display mt-4 text-3xl text-bone sm:text-4xl md:text-5xl"
+              className="display mt-4 text-3xl sm:text-4xl md:text-5xl"
             >
-              Films that earned their place on the front page.
+              Films built around real people.
             </h2>
           </div>
           <Link
             href="/work"
-            className="group inline-flex shrink-0 items-center gap-2 text-sm text-bone-muted transition-colors hover:text-bone"
+            className="group inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-ember-deep transition-colors hover:text-ember"
           >
             View all work
             <span
               aria-hidden
-              className="transition-transform duration-500 ease-cinema group-hover:translate-x-1"
+              className="transition-transform duration-300 ease-gentle group-hover:translate-x-1"
             >
               →
             </span>

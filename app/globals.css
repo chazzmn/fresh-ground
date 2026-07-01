@@ -4,11 +4,11 @@
 
 /*
   BRAND COLOUR SWAP MARKER — CSS custom properties mirror tailwind.config.ts.
-  Keep these in sync when the real brand palette lands.
+  Warm, bright theme. Keep in sync when the real palette lands.
 */
 :root {
-  --ink: #0d0d0d;
-  --bone: #f5f2ec;
+  --paper: #fbf6ee;
+  --cocoa: #2e2620;
   --ember: #c97c42;
 }
 
@@ -20,12 +20,12 @@
   }
 
   body {
-    background-color: var(--ink);
-    color: var(--bone);
+    background-color: var(--paper);
+    color: var(--cocoa);
     font-feature-settings: 'kern', 'liga', 'calt';
   }
 
-  /* Respect users who prefer reduced motion — kills reveals and ken-burns */
+  /* Respect users who prefer reduced motion */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -39,68 +39,64 @@
 
   ::selection {
     background: var(--ember);
-    color: #0d0d0d;
+    color: #fff;
   }
 
-  /* Focus visibility for keyboard users — accessibility */
+  /* Keyboard focus visibility */
   :focus-visible {
     outline: 2px solid var(--ember);
     outline-offset: 3px;
-    border-radius: 2px;
+    border-radius: 3px;
   }
 }
 
 @layer components {
-  /* Constrained content shell used across the site */
+  /* Constrained content shell */
   .shell {
     @apply mx-auto w-full max-w-shell px-5 sm:px-8 lg:px-12;
   }
 
-  /* Small uppercase overline label */
+  /* Small uppercase overline label — warm terracotta */
   .overline {
-    @apply font-sans text-[0.7rem] font-medium uppercase tracking-overline text-ember;
+    @apply font-sans text-[0.72rem] font-bold uppercase tracking-overline text-ember-deep;
   }
 
-  /* Editorial display heading defaults */
+  /* Rounded human display heading defaults */
   .display {
-    @apply font-display font-light leading-[1.02] tracking-tightest;
+    @apply font-display font-semibold leading-[1.05] tracking-tightest text-cocoa;
   }
 
-  /* Primary + secondary CTA buttons — 44px+ tap targets */
+  /* CTA buttons — generous terracotta, 44px+ tap targets */
   .btn {
-    @apply inline-flex min-h-[3rem] items-center justify-center gap-2 rounded-full px-7 text-sm font-medium tracking-wide transition-all duration-500 ease-cinema focus-visible:outline-none;
+    @apply inline-flex min-h-[3rem] items-center justify-center gap-2 rounded-full px-7 text-sm font-semibold tracking-wide transition-all duration-300 ease-gentle focus-visible:outline-none;
   }
   .btn-primary {
-    @apply btn bg-ember text-ink hover:bg-ember-soft hover:-translate-y-0.5;
+    @apply btn bg-ember text-white shadow-soft hover:bg-ember-deep hover:-translate-y-0.5;
   }
   .btn-ghost {
-    @apply btn border border-bone/25 text-bone hover:border-bone/70 hover:bg-bone/5;
+    @apply btn border-2 border-ember/45 text-cocoa hover:border-ember hover:bg-ember/10;
   }
 }
 
-/* Thin, brand-tinted scrollbar */
+/* Warm, tinted scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0d0d0d;
+  background: #f3e9da;
 }
 ::-webkit-scrollbar-thumb {
-  background: #2a2825;
+  background: #e0ccae;
   border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3a3833;
+  background: #d3b98a;
 }
 
-/* Fine grain film-texture noise overlay class (used on hero) */
-.grain::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.05;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+/* Warm graceful media placeholder (used when a video/still is missing) */
+.media-fallback {
+  background:
+    radial-gradient(120% 120% at 20% 15%, rgba(217, 148, 94, 0.35), transparent 55%),
+    linear-gradient(140deg, #f3e9da 0%, #eeddc6 45%, #e7cfa9 100%);
 }

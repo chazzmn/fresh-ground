@@ -22,9 +22,9 @@ const BUDGETS = [
 ];
 
 const fieldBase =
-  'w-full rounded-lg border border-ink-line bg-ink px-4 py-3 text-bone placeholder:text-bone-faint transition-colors duration-300 focus:border-ember focus:outline-none';
+  'w-full rounded-xl border border-line bg-white px-4 py-3 text-cocoa placeholder:text-taupe transition-colors duration-200 focus:border-ember focus:outline-none focus:ring-2 focus:ring-ember/25';
 
-const labelBase = 'mb-2 block text-sm text-bone-muted';
+const labelBase = 'mb-2 block text-sm font-semibold text-coffee';
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>('idle');
@@ -59,15 +59,19 @@ export function ContactForm() {
     return (
       <div
         role="status"
-        className="rounded-2xl border border-ember/40 bg-ink-raised p-8 sm:p-10"
+        aria-live="polite"
+        className="rounded-2xl border-2 border-ember/40 bg-paper-card p-8 shadow-card sm:p-10"
       >
-        <p className="overline">Message received</p>
-        <h3 className="display mt-3 text-2xl text-bone sm:text-3xl">
-          Thanks — we will be in touch shortly.
+        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-ember/15 text-2xl text-ember-deep">
+          ✓
+        </span>
+        <p className="overline mt-5">Message received</p>
+        <h3 className="display mt-3 text-2xl sm:text-3xl">
+          Thanks — we&apos;ll be in touch shortly.
         </h3>
-        <p className="mt-3 max-w-prose text-bone-muted">
+        <p className="mt-3 max-w-prose text-coffee">
           We read every enquiry ourselves and usually reply within two working
-          days. If it is urgent, give us a call and we will move faster.
+          days. If it&apos;s urgent, give us a call and we&apos;ll move faster.
         </p>
         <button
           type="button"
@@ -84,7 +88,7 @@ export function ContactForm() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="rounded-2xl border border-ink-line bg-ink-raised p-6 sm:p-8 lg:p-10"
+      className="rounded-2xl border border-line bg-paper-card p-6 shadow-card sm:p-8 lg:p-10"
     >
       {/* Honeypot — hidden from humans */}
       <div aria-hidden className="hidden">
@@ -127,7 +131,7 @@ export function ContactForm() {
 
         <div>
           <label htmlFor="phone" className={labelBase}>
-            Phone <span className="text-bone-faint">(optional)</span>
+            Phone <span className="text-taupe">(optional)</span>
           </label>
           <input
             id="phone"
@@ -164,7 +168,7 @@ export function ContactForm() {
 
         <div className="sm:col-span-2">
           <label htmlFor="budget" className={labelBase}>
-            Budget range <span className="text-bone-faint">(optional)</span>
+            Budget range <span className="text-taupe">(optional)</span>
           </label>
           <select
             id="budget"
@@ -197,7 +201,7 @@ export function ContactForm() {
       </div>
 
       {status === 'error' && (
-        <p role="alert" className="mt-4 text-sm text-ember-soft">
+        <p role="alert" className="mt-4 rounded-lg bg-ember/10 px-4 py-3 text-sm font-medium text-ember-deep">
           {error}
         </p>
       )}
@@ -210,7 +214,7 @@ export function ContactForm() {
         >
           {status === 'submitting' ? 'Sending…' : 'Send enquiry'}
         </button>
-        <p className="text-xs text-bone-faint">
+        <p className="text-xs text-taupe">
           We will only use your details to reply to this enquiry.
         </p>
       </div>

@@ -47,7 +47,7 @@ export function WorkGrid() {
       <div
         role="tablist"
         aria-label="Filter work by sector"
-        className="sticky top-16 z-30 -mx-5 mb-10 flex snap-x gap-2 overflow-x-auto border-b border-ink-line bg-ink/85 px-5 py-4 backdrop-blur-md sm:top-20 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:rounded-full sm:border sm:px-3 sm:py-2"
+        className="sticky top-16 z-30 -mx-5 mb-10 flex snap-x gap-2 overflow-x-auto border-b border-line bg-paper/90 px-5 py-4 backdrop-blur-md sm:top-20 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:rounded-full sm:border sm:px-3 sm:py-2"
       >
         {FILTERS.map((f) => {
           const selected = filter === f.value;
@@ -57,17 +57,15 @@ export function WorkGrid() {
               role="tab"
               aria-selected={selected}
               onClick={() => setFilter(f.value)}
-              className={`relative min-h-[2.75rem] shrink-0 snap-start rounded-full px-5 text-sm transition-colors duration-300 ${
-                selected
-                  ? 'text-ink'
-                  : 'text-bone-muted hover:text-bone'
+              className={`relative min-h-[2.75rem] shrink-0 snap-start rounded-full px-5 text-sm font-semibold transition-colors duration-200 ${
+                selected ? 'text-white' : 'text-coffee hover:text-cocoa'
               }`}
             >
               {selected && (
                 <motion.span
                   layoutId="filter-pill"
                   className="absolute inset-0 rounded-full bg-ember"
-                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.4, ease: [0.33, 1, 0.68, 1] }}
                 />
               )}
               <span className="relative z-10">{f.label}</span>
@@ -77,7 +75,7 @@ export function WorkGrid() {
       </div>
 
       {/* Count */}
-      <p className="mb-6 text-sm text-bone-faint" aria-live="polite">
+      <p className="mb-6 text-sm text-taupe" aria-live="polite">
         Showing {visible.length}{' '}
         {visible.length === 1 ? 'project' : 'projects'}
         {filter !== 'all' &&
@@ -109,7 +107,7 @@ export function WorkGrid() {
       </LayoutGroup>
 
       {visible.length === 0 && (
-        <p className="py-16 text-center text-bone-muted">
+        <p className="py-16 text-center text-coffee">
           No projects in this sector yet — please check back soon.
         </p>
       )}

@@ -4,12 +4,13 @@ import { useCallback, useEffect, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { TESTIMONIALS } from '@/content/testimonials';
 import { PROJECTS } from '@/content/projects';
+import { SmartImage } from './SmartImage';
 import { Reveal } from './Reveal';
 
 /*
-  Testimonial carousel. Rotates through the five real testimonials, each paired
-  with the related project's poster still. Auto-advances slowly, pauses on hover
-  / focus, and honours reduced-motion (no auto-advance). Manual dot controls.
+  Testimonial carousel, warm theme. Rotates through the six real testimonials,
+  each paired with the related project's still. Auto-advances slowly, pauses on
+  hover / focus, honours reduced-motion. Manual dot + arrow controls.
 */
 
 const AUTO_MS = 7000;
@@ -35,7 +36,7 @@ export function TestimonialCarousel() {
   return (
     <section
       aria-labelledby="testimonials-heading"
-      className="border-t border-ink-line bg-ink-soft py-20 sm:py-28"
+      className="border-t border-line py-20 sm:py-28"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
@@ -44,41 +45,33 @@ export function TestimonialCarousel() {
       <div className="shell">
         <Reveal className="max-w-2xl">
           <p className="overline">In their words</p>
-          <h2
-            id="testimonials-heading"
-            className="display mt-4 text-3xl text-bone sm:text-4xl md:text-5xl"
-          >
+          <h2 id="testimonials-heading" className="display mt-4 text-3xl sm:text-4xl md:text-5xl">
             Trusted by teams who care how their story lands.
           </h2>
         </Reveal>
 
         <div className="mt-14 grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_0.8fr] lg:gap-16">
           {/* Quote */}
-          <div className="relative min-h-[15rem]">
+          <div className="relative min-h-[16rem]">
             <AnimatePresence mode="wait">
               <motion.figure
                 key={index}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1] }}
               >
-                <span
-                  aria-hidden
-                  className="font-display text-6xl leading-none text-ember/40"
-                >
-                  “
+                <span aria-hidden className="font-script text-6xl leading-none text-ember">
+                  &ldquo;
                 </span>
-                <blockquote className="-mt-4">
-                  <p className="font-display text-xl font-light leading-relaxed text-bone sm:text-2xl md:text-[1.7rem]">
+                <blockquote className="-mt-3">
+                  <p className="font-display text-xl font-medium leading-relaxed text-cocoa sm:text-2xl md:text-[1.65rem]">
                     {t.quote}
                   </p>
                 </blockquote>
                 <figcaption className="mt-6">
-                  <span className="block font-medium text-bone">
-                    {t.author}
-                  </span>
-                  <span className="text-sm text-bone-faint">{t.role}</span>
+                  <span className="block font-semibold text-cocoa">{t.author}</span>
+                  <span className="text-sm text-taupe">{t.role}</span>
                 </figcaption>
               </motion.figure>
             </AnimatePresence>
@@ -92,24 +85,24 @@ export function TestimonialCarousel() {
                 initial={{ opacity: 0, scale: 1.02 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-ink-line"
+                transition={{ duration: 0.55, ease: [0.33, 1, 0.68, 1] }}
+                className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-line shadow-card"
               >
                 {project ? (
                   <>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <SmartImage
                       src={project.poster}
                       alt={project.alt}
+                      label={project.client}
                       className="h-full w-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent" />
-                    <span className="absolute bottom-4 left-4 text-xs uppercase tracking-overline text-bone">
+                    <div className="absolute inset-0 bg-gradient-to-t from-cocoa/60 to-transparent" />
+                    <span className="absolute bottom-4 left-4 text-xs font-bold uppercase tracking-overline text-white">
                       {project.client}
                     </span>
                   </>
                 ) : (
-                  <div className="flex h-full items-center justify-center bg-ink-raised text-sm text-bone-faint">
+                  <div className="media-fallback flex h-full items-center justify-center text-sm font-semibold text-ember-deep">
                     {t.author}
                   </div>
                 )}
@@ -129,10 +122,8 @@ export function TestimonialCarousel() {
                 aria-selected={i === index}
                 aria-label={`Show testimonial from ${item.author}`}
                 onClick={() => setIndex(i)}
-                className={`h-2 rounded-full transition-all duration-500 ease-cinema ${
-                  i === index
-                    ? 'w-8 bg-ember'
-                    : 'w-2 bg-bone/25 hover:bg-bone/50'
+                className={`h-2 rounded-full transition-all duration-300 ease-gentle ${
+                  i === index ? 'w-8 bg-ember' : 'w-2 bg-line hover:bg-ember/40'
                 }`}
               />
             ))}
@@ -142,7 +133,7 @@ export function TestimonialCarousel() {
               type="button"
               onClick={() => go(-1)}
               aria-label="Previous testimonial"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-bone/20 text-bone transition-colors hover:border-bone/60"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-cocoa transition-colors hover:border-ember hover:text-ember-deep"
             >
               <span aria-hidden>←</span>
             </button>
@@ -150,7 +141,7 @@ export function TestimonialCarousel() {
               type="button"
               onClick={() => go(1)}
               aria-label="Next testimonial"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-bone/20 text-bone transition-colors hover:border-bone/60"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-cocoa transition-colors hover:border-ember hover:text-ember-deep"
             >
               <span aria-hidden>→</span>
             </button>

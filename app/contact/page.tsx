@@ -30,25 +30,25 @@ export default function ContactPage() {
             <p className="overline">Start a project</p>
             <h1
               id="contact-heading"
-              className="display mt-5 text-4xl text-bone sm:text-5xl md:text-6xl"
+              className="display mt-5 text-4xl sm:text-5xl md:text-6xl"
             >
-              Let&apos;s make something worth watching.
+              Let&apos;s make something together.
             </h1>
-            <p className="mt-6 max-w-prose text-lg leading-relaxed text-bone-muted">
+            <p className="mt-6 max-w-prose text-lg leading-relaxed text-coffee">
               Whether you have a detailed brief or just a hunch that film could
               help, this is the place to start. We read every enquiry ourselves
-              and reply honestly — including when we think we are not the right
-              fit.
+              and reply honestly — including when we think we&apos;re not the
+              right fit.
             </p>
 
-            <dl className="mt-10 space-y-6 border-t border-ink-line pt-8">
+            <dl className="mt-10 space-y-6 border-t border-line pt-8">
               <div>
                 <dt className="overline">Email</dt>
                 <dd className="mt-1">
                   {/* PLACEHOLDER_EMAIL */}
                   <a
                     href={PLACEHOLDERS.EMAIL_HREF}
-                    className="text-lg text-bone transition-colors hover:text-ember"
+                    className="text-lg font-semibold text-cocoa transition-colors hover:text-ember-deep"
                   >
                     {PLACEHOLDERS.EMAIL}
                   </a>
@@ -60,7 +60,7 @@ export default function ContactPage() {
                   {/* PLACEHOLDER_PHONE_NUMBER */}
                   <a
                     href={PLACEHOLDERS.PHONE_HREF}
-                    className="text-lg text-bone transition-colors hover:text-ember"
+                    className="text-lg font-semibold text-cocoa transition-colors hover:text-ember-deep"
                   >
                     {PLACEHOLDERS.PHONE_NUMBER}
                   </a>
@@ -68,29 +68,35 @@ export default function ContactPage() {
               </div>
               <div>
                 <dt className="overline">Studio</dt>
-                <dd className="mt-1 text-lg text-bone-muted">
+                <dd className="mt-1 text-lg text-coffee">
                   Exeter, Devon — working across the whole of the UK
                 </dd>
               </div>
               <div>
                 <dt className="overline">Follow</dt>
-                <dd className="mt-2 flex gap-5 text-sm uppercase tracking-overline">
-                  {/* PLACEHOLDER social links */}
+                <dd className="mt-2 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold uppercase tracking-overline">
                   <a
                     href={PLACEHOLDERS.INSTAGRAM_URL}
-                    className="text-bone-muted transition-colors hover:text-ember"
+                    className="text-coffee transition-colors hover:text-ember-deep"
                   >
                     Instagram
                   </a>
                   <a
                     href={PLACEHOLDERS.VIMEO_URL}
-                    className="text-bone-muted transition-colors hover:text-ember"
+                    className="text-coffee transition-colors hover:text-ember-deep"
                   >
                     Vimeo
                   </a>
                   <a
+                    href={PLACEHOLDERS.FACEBOOK_URL}
+                    className="text-coffee transition-colors hover:text-ember-deep"
+                  >
+                    Facebook
+                  </a>
+                  {/* PLACEHOLDER_LINKEDIN_URL */}
+                  <a
                     href={PLACEHOLDERS.LINKEDIN_URL}
-                    className="text-bone-muted transition-colors hover:text-ember"
+                    className="text-coffee transition-colors hover:text-ember-deep"
                   >
                     LinkedIn
                   </a>
