@@ -14,7 +14,7 @@ import { PLACEHOLDERS } from '@/content/placeholders';
   - Respects prefers-reduced-motion. Graceful warm fallback if media missing.
 */
 
-const HEADLINE = 'Cinematic Stories With Soul';
+const HEADLINE = 'Video Storytelling with Soul';
 const SUBHEAD =
   'Video storytelling that engages, inspires action, and connects your audience — for organisations who care about the story they tell.';
 

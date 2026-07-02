@@ -10,6 +10,12 @@
   --paper: #fbf6ee;
   --cocoa: #2e2620;
   --ember: #c97c42;
+
+  /* Font families — loaded via Google Fonts <link> in app/layout.tsx.
+     Consumed by tailwind.config.ts (font-display / font-sans / font-script). */
+  --font-poppins: 'Poppins', system-ui, sans-serif;
+  --font-nunito: 'Nunito Sans', system-ui, sans-serif;
+  --font-script: 'Dancing Script', cursive;
 }
 
 @layer base {

@@ -11,7 +11,7 @@ export const SITE_URL =
 
 export const SITE = {
   name: 'Fresh Ground Films',
-  tagline: 'Cinematic Stories With Soul',
+  tagline: 'Video Storytelling with Soul',
   shortTagline: 'Video Storytelling with Soul',
   founder: 'Ross Gill',
   city: 'Exeter',

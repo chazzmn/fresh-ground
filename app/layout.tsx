@@ -1,36 +1,22 @@
 import type { Metadata } from 'next';
-import { Poppins, Nunito_Sans, Dancing_Script } from 'next/font/google';
 import './globals.css';
 import { SITE, SITE_URL } from '@/content/site';
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
 import { LocalBusinessJsonLd } from '@/components/JsonLd';
 
-// Warm, rounded, human sans for headings. next/font self-hosts these at build
-// time (no runtime request to Google — better privacy for public-sector/NHS
-// visitors, and faster).
-const poppins = Poppins({
-  subsets: ['latin'],
-  display: 'swap',
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-poppins',
-});
+/*
+  Fonts are loaded in the browser via Google Fonts <link> tags (see <head>
+  below) rather than next/font's build-time fetch. This keeps the production
+  build resilient in offline/sandboxed CI and still works on Vercel. The
+  CSS variables --font-poppins / --font-nunito / --font-script are defined in
+  globals.css and consumed by tailwind.config.ts.
 
-// Warm sans for body copy.
-const nunito = Nunito_Sans({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-nunito',
-});
-
-// Flowing script for the logotype — PLACEHOLDER_LOGO_SVG stand-in until the
-// real cursive logo file is supplied (see components/Logo.tsx).
-const dancing = Dancing_Script({
-  subsets: ['latin'],
-  display: 'swap',
-  weight: ['600', '700'],
-  variable: '--font-script',
-});
+  Fonts in use:
+    - Poppins        — warm, rounded human sans for headings
+    - Nunito Sans    — warm sans for body copy
+    - Dancing Script — flowing script for the PLACEHOLDER_LOGO wordmark
+*/
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -81,10 +67,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en-GB"
-      className={`${poppins.variable} ${nunito.variable} ${dancing.variable}`}
-    >
+    <html lang="en-GB">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,600;6..12,700&family=Dancing+Script:wght@600;700&display=swap"
+        />
+      </head>
       <body className="min-h-screen bg-paper font-sans text-cocoa antialiased">
         {/* Skip link for keyboard + screen-reader users */}
         <a
